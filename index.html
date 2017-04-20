@@ -174,6 +174,9 @@
 				
 				<section>Points forts : Curieux, adore les Challenge</section>
 				<section>Point faible : la dispersion</section>
+				<section>
+					<video src="img/end.webm" width="1200" height="500"></video>
+				</section>
 			</div>
 		</div>
 
@@ -210,10 +213,14 @@
 						weblib = true;
 						initHeader(document.getElementById('large-header2'), document.getElementById('demo-canvas2'));
 					}
+
+					if(event.indexh === 12) {
+						document.querySelector('video').play();
+					}
 				});
 
 			    // Main
-			    
+
 			    // 
 			    addListeners();
 
