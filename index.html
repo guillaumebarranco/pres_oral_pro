@@ -12,6 +12,56 @@
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
+		<style>
+			.reveal section img.no-border {
+				border: none;
+				box-shadow: none;
+				background: none;
+			}
+
+			.abs {
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+
+			.php {
+				left: 0;
+			}
+			.zf2 {
+				left: 350px;
+			}
+			.doctrine {
+				left: 700px;
+			}
+			.git {
+				top: 150px;
+			}
+			.linux {
+				top: 150px;
+				left: 200px;
+			}
+			.ajax {
+				top: 250px;
+				left: 500px;
+			}
+			.js {
+				top: 150px;
+				left: 700px;
+			}
+
+			.bottom {
+				top: 300px;
+			}
+
+			.dut li {
+				font-size: 80%;
+				width: 200px;
+			}
+			
+
+		</style>
+
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -24,29 +74,103 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
+
+				<section>
+					<h3>Présentation Projet Professionnel</h3>
+					<br><br>
+					<h2>Guillaume Barranco</h2>
+					
+				</section>
+
 				<section>Informatique : Un choix déjà fait depuis 13 ans</section>
-				<section>En direction le DUT pour une overview globale</section>
-				
-				<section>
-					<img src="img/insidepic.png" width="500" alt="">
+
+				<section class="dut" data-transition="none">
+					<p>En direction le DUT pour une overview globale</p>
+
+					<ul class="fragment" style="position: relative; left: -400px;">
+						<li class="abs bottom">Réseaux</li>
+						<li class="abs zf2">Graphisme</li>
+						<li class="abs php">Marketing</li>
+						<li class="abs doctrine">Gestion de Projet</li>
+						<li class="abs git" style="">Développement web</li>
+						<li class="abs ajax">Analyse de signaux</li>
+						<li class="abs js">Video</li>
+						<li class="abs linux" style="left: 400px; top:">etc...</li>
+					</ul>
+
+				</section>
+
+				<section class="dut" data-transition="none">
+					<p>En direction le DUT pour une overview globale</p>
+
+					<ul style="position: relative; left: -400px;">
+						<li class="abs bottom">Réseaux</li>
+						<li class="abs zf2">Graphisme</li>
+						<li class="abs php">Marketing</li>
+						<li class="abs doctrine">Gestion de Projet</li>
+						<li class="abs git" style="color: red;">Développement web</li>
+						<li class="abs ajax">Analyse de signaux</li>
+						<li class="abs js">Video</li>
+						<li class="abs linux" style="left: 400px; top:">etc...</li>
+					</ul>
+
 				</section>
 
 				<section>
 					<img src="img/insidepic.png" width="500" alt="">
-					Bain bouillonant
+
+					<div id="large-header" class="fragment" style="position: relative;">
+						<canvas id="demo-canvas" style="position: absolute; top: 0; left: 0;"></canvas>
+					</div>
+
+					<p class="fragment" style="margin-top: -500px; position: relative; height: 500px;">
+						<img src="img/php.png" width="150" 		class="no-border abs php" alt="">
+						<img src="img/zf2.png" width="150" 		class="no-border abs zf2" alt="">
+						<img src="img/doctrine.png" width="150" class="no-border abs doctrine" alt="">
+						<img src="img/git.png" width="150" 		class="no-border abs git" alt="">
+						<img src="img/ajax.png" width="150" 	class="no-border abs ajax" alt="">
+						<img src="img/js.png" width="150" 		class="no-border abs js" alt="">
+						<img src="img/linux.png" width="150" 	class="no-border abs linux" alt="">
+					</p>
+
+					<aside class="notes">
+						This slide has fragments which are also stepped through in the notes window.
+					</aside>
 				</section>
 
 				<section>
-					<img src="img/insidepic.png" width="500" alt="">
-					Bain bouillonant <br><br>
-					PHP + Framework Zend + ORM Doctrine + Git + AJAX + Javascript
+					Les Echecs + Ce que j'en ai appris
 				</section>
+
+				<section>
+					<img src="img/playapp.png" style="border:none; background-color: #fff;" width="500" alt="">
+					<p>Première alternance d'un an</p>
+					<p>Full Stack (Front + Back)</p>
+					<p>Preprod, Prod. Consolidations de toutes les notions</p>
+				</section>
+
 				<section>Les Echecs + Ce que j'en ai appris</section>
 
-				<section>Première alternance PlayApp => re bain bouillonant (moindre) => Full client et serveur => Full Stack</section>
-				<section>Les Echecs + Ce que j'en ai appris</section>
+				<section>
+					<img src="img/weblib.png" class="no-border" style="background-color: #fff;" width="500" alt="">
+					<p>CDI + Alternance 2 ans</p>
 
-				<section>Troisième Alternance Weblib => re bain bouillant pur FullStack (Node.js, MongoDB, Docker, Jenkins, Tasks Runners, Amazon Web Services, </section>
+					<div id="large-header2" class="fragment" style="position: relative;">
+						<canvas id="demo-canvas2" style="position: absolute; top: 0; left: 0;"></canvas>
+					</div>
+
+					<p class="fragment" style="margin-top: -500px; position: relative; height: 500px;">
+						<img src="img/nodejs.png" 		width="250" 	class="no-border abs php" alt="">
+						<img src="img/mongodb.png" 		width="250" 	class="no-border abs zf2" alt="">
+						<img src="img/docker.png" 		width="250" 	class="no-border abs doctrine" alt="">
+						<img src="img/aws.png" 			width="250" 	class="no-border abs git" alt="">
+						<img src="img/jenkins.png" 		width="250" 	class="no-border abs ajax" alt="">
+						<img src="img/angularjs.png" 	width="250" 	class="no-border abs js" alt="">
+						<!-- <img src="img/linux.png" width="150" 	class="no-border abs linux" alt=""> -->
+					</p>
+
+				</section>
+
 				<section>Les Echecs + Ce que j'en ai appris</section>
 				
 				<section>Points forts : Curieux, adore les Challenge</section>
@@ -56,8 +180,121 @@
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
-		<script src="node_modules/revealjs_addons/index.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script> -->
+		<!-- <script src="node_modules/revealjs_addons/index.js"></script> -->
+
+		<script>
+
+			launch();
+
+			function launch() {
+			    var width, height, largeHeader, canvas, ctx, circles, target, animateHeader = true;
+
+			    // Main
+			    initHeader(document.getElementById('large-header'), document.getElementById('demo-canvas'));
+			    // initHeader(document.getElementById('large-header2'), document.getElementById('demo-canvas2'));
+			    addListeners();
+
+			    function initHeader(largeHeader, canvas) {
+			        // width = window.innerWidth;
+			        width = 1000;
+			        height = 500;
+			        target = {
+			            x: 0,
+			            y: height
+			        };
+
+			        largeHeader.style.height = height + 'px';
+
+			        canvas.width = width;
+			        canvas.height = height;
+			        ctx = canvas.getContext('2d');
+
+			        // create particles
+			        circles = [];
+			        for (var x = 0; x < width * 0.5; x++) {
+			            var c = new Circle();
+			            circles.push(c);
+			        }
+			        animate();
+			    }
+
+			    // Event handling
+
+			    function addListeners() {
+			        //window.addEventListener('scroll', scrollCheck);
+			        window.addEventListener('resize', resize);
+			    }
+
+			    function scrollCheck() {
+			        if (document.body.scrollTop > height) animateHeader = false;
+			        else animateHeader = true;
+			    }
+
+			    function resize() {
+			        width = window.innerWidth;
+			        height = 130;
+			        largeHeader.style.height = height + 'px';
+			        canvas.width = width;
+			        canvas.height = height;
+			    }
+
+			    function animate() {
+			        if (animateHeader) {
+			            ctx.clearRect(0, 0, width, height);
+			            for (var i in circles) {
+			                circles[i].draw();
+			            }
+			        }
+			        requestAnimationFrame(animate);
+			    }
+
+			    function randomFloatBetween(minValue,maxValue,precision){
+			        if(typeof(precision) == 'undefined'){
+			            precision = 2;
+			        }
+			        return parseFloat(Math.min(minValue + (Math.random() * (maxValue - minValue)),maxValue).toFixed(precision));
+			    }
+
+
+			    // Canvas manipulation
+
+			    function Circle() {
+			        var _this = this;
+
+			        // constructor
+			        (function() {
+			            _this.pos = {};
+			            init();
+			            //console.log(_this);
+			        })();
+
+			        function init() {
+			            _this.pos.x = Math.random() * width;
+			            _this.pos.y = height + Math.random() * 100;
+			            _this.alpha = 0.1 + Math.random() * 0.3;
+			            _this.scale = 0.1 + Math.random() * 0.3;
+			            // _this.velocity = Math.random();
+			            _this.velocity = randomFloatBetween(1,2);
+			            console.log(_this.velocity);
+			        }
+
+			        this.draw = function() {
+			            if (_this.alpha <= 0) {
+			                init();
+			            }
+			            _this.pos.y -= _this.velocity;
+			            _this.alpha -= 0.0005;
+			            ctx.beginPath();
+			            ctx.arc(_this.pos.x, _this.pos.y, _this.scale * 10, 0, 2 * Math.PI, false);
+			            ctx.fillStyle = 'rgba(255,255,255,' + _this.alpha + ')';
+			            ctx.fill();
+			        };
+			    }
+			}
+
+		</script>
 
 		<script>
 			// More info https://github.com/hakimel/reveal.js#configuration
