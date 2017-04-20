@@ -171,6 +171,11 @@
 				</section>
 
 				<section>Les Echecs + Ce que j'en ai appris</section>
+
+				<section>
+					<h2>Mia</h2>
+					<img src="img/mia.png" width="300" alt="">
+				</section>
 				
 				<section>Points forts : Curieux, adore les Challenge</section>
 				<section>Point faible : la dispersion</section>
@@ -214,7 +219,7 @@
 						initHeader(document.getElementById('large-header2'), document.getElementById('demo-canvas2'));
 					}
 
-					if(event.indexh === 12) {
+					if(event.indexh === document.querySelectorAll('section').length - 1) {
 						document.querySelector('video').play();
 					}
 				});
@@ -307,7 +312,6 @@
 			            _this.scale = 0.1 + Math.random() * 0.3;
 			            // _this.velocity = Math.random();
 			            _this.velocity = randomFloatBetween(1,2);
-			            console.log(_this.velocity);
 			        }
 
 			        this.draw = function() {
