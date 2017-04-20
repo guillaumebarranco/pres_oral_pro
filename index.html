@@ -79,7 +79,6 @@
 					<h3>Présentation Projet Professionnel</h3>
 					<br><br>
 					<h2>Guillaume Barranco</h2>
-					
 				</section>
 
 				<section>Informatique : Un choix déjà fait depuis 13 ans</section>
@@ -152,7 +151,7 @@
 				<section>Les Echecs + Ce que j'en ai appris</section>
 
 				<section>
-					<img src="img/weblib.png" class="no-border" style="background-color: #fff;" width="500" alt="">
+					<img src="img/weblib.png" class="no-border" style="background-color: #fff;" width="400" alt="">
 					<p>CDI + Alternance 2 ans</p>
 
 					<div id="large-header2" class="fragment" style="position: relative;">
@@ -191,9 +190,31 @@
 			function launch() {
 			    var width, height, largeHeader, canvas, ctx, circles, target, animateHeader = true;
 
+			    var insidepic = false;
+				var weblib = false;
+
+				initHeader(document.getElementById('large-header'), document.getElementById('demo-canvas'));
+				initHeader(document.getElementById('large-header2'), document.getElementById('demo-canvas2'));
+
+				Reveal.addEventListener('slidechanged', function(event) {
+					// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+
+					insidepic = false;
+					weblib = false;
+
+					if(event.indexh === 4) {
+						insidepic = true;
+						initHeader(document.getElementById('large-header'), document.getElementById('demo-canvas'));
+
+					} else if(event.indexh === 8) {
+						weblib = true;
+						initHeader(document.getElementById('large-header2'), document.getElementById('demo-canvas2'));
+					}
+				});
+
 			    // Main
-			    initHeader(document.getElementById('large-header'), document.getElementById('demo-canvas'));
-			    // initHeader(document.getElementById('large-header2'), document.getElementById('demo-canvas2'));
+			    
+			    // 
 			    addListeners();
 
 			    function initHeader(largeHeader, canvas) {
@@ -241,12 +262,14 @@
 			    }
 
 			    function animate() {
-			        if (animateHeader) {
+
+			        if (animateHeader && (insidepic || weblib)) {
 			            ctx.clearRect(0, 0, width, height);
 			            for (var i in circles) {
 			                circles[i].draw();
 			            }
 			        }
+
 			        requestAnimationFrame(animate);
 			    }
 
@@ -293,7 +316,6 @@
 			        };
 			    }
 			}
-
 		</script>
 
 		<script>
