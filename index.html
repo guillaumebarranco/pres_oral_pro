@@ -58,7 +58,52 @@
 				font-size: 80%;
 				width: 200px;
 			}
+
+			/*First*/
 			
+			#mainCanvas {
+				position: absolute;
+				left: 0;
+			    top: 200px;
+			    zoom: 0.5;
+			}
+
+			/*Second*/
+
+			#scene {
+			  width: 100%;
+			  height: 100%;
+			  perspective: 150px; /* the lower this is, the fancier it gets */
+			  position: absolute;
+			  top: 0;
+			}
+
+			#emitter {
+			  position: absolute;
+			  left: 50%;
+			  top: 50%;
+			  transform-style: preserve-3d;
+			  animation: rotate 4s infinite linear;
+			}
+
+			.particle {
+			  position: absolute;
+			  width: 10px;
+			  height: 10px;
+			  background: white;
+			  border-radius: 20%;
+			  transition: 1s ease-in;
+			}
+
+			@keyframes rotate {
+			  0% {
+			    transform: rotateY(0) rotateZ(-180deg);
+			  }
+			  100% {
+			    transform: rotateY(360deg) rotateZ(180deg);
+			  }
+			}
+
 
 		</style>
 
@@ -79,6 +124,11 @@
 					<h3>Présentation Projet Professionnel</h3>
 					<br><br>
 					<h2>Guillaume Barranco</h2>
+					<!-- <canvas id="mainCanvas"></canvas> -->
+
+					<div id="scene">
+					  <div id="emitter"></div>
+					</div>
 				</section>
 
 				<section>Informatique : Un choix déjà fait depuis 13 ans</section>
@@ -165,20 +215,72 @@
 						<img src="img/aws.png" 			width="250" 	class="no-border abs git" alt="">
 						<img src="img/jenkins.png" 		width="250" 	class="no-border abs ajax" alt="">
 						<img src="img/angularjs.png" 	width="250" 	class="no-border abs js" alt="">
-						<!-- <img src="img/linux.png" width="150" 	class="no-border abs linux" alt=""> -->
 					</p>
 
 				</section>
 
+
 				<section>Les Echecs + Ce que j'en ai appris</section>
+	
+				<section>
+					Parler de la compétition IESA Multimedia (plateforme de matching de modeuse/marques) + Meilleur Développeur
+				</section>
+
+				<section>
+					Parler de la compétition Designers Interactifs (on a gagné quand même)
+				</section>
 
 				<section>
 					<h2>Mia</h2>
+
 					<img src="img/mia.png" width="300" alt="">
+					<p>Née pour tester une librairie Javascript de reconnaissance vocale</p>
+					<p>Gérer la lumière vocalement</p>
+
+					<ul>
+						<li>Météo</li>
+						<li>Programme TV</li>
+						<li>Classement ATP</li>
+						<li>Calendriers / Anniversaire</li>
+						<li>Définition de mots</li>
+						<li>etc...</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Objectif pour la suite de Mia</h2>
+
+					<ul>
+						<li>Rajouter des sentiments et émotions variables</li>
+						<li>La faire apprendre toute seule (via Internet)</li>
+						<li>La brancher sur le reste de la maison (Volets électriques, musique etc...)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Objectif</h2>
+
+					<p>=> Devenir un expert</p>
 				</section>
 				
-				<section>Points forts : Curieux, adore les Challenge</section>
-				<section>Point faible : la dispersion</section>
+				<section>
+					<h2>Points forts</h2>
+
+					<ul>
+						<li>Curieux</li>
+						<li>Adore les challenges</li>
+						<li>Conscience du client</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Points faibles</h2>
+
+					<ul>
+						<li>La dispersion</li>
+					</ul>
+				</section>
+
 				<section>
 					<video src="img/end.webm" width="1200" height="500"></video>
 				</section>
@@ -193,6 +295,8 @@
 
 		<script>
 
+			var animateFirstSlide = true;
+
 			launch();
 
 			function launch() {
@@ -206,6 +310,14 @@
 
 				Reveal.addEventListener('slidechanged', function(event) {
 					// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+
+					console.log('event.indexh', event.indexh);
+
+					animateFirstSlide = false;
+
+					if(event.indexh === 0) {
+						animateFirstSlide = true;
+					}
 
 					insidepic = false;
 					weblib = false;
@@ -327,6 +439,177 @@
 			        };
 			    }
 			}
+		</script>
+		
+		<!-- First Animation On Presentation -->
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+		<script>
+			// https://twitter.com/msvaljek
+			// http://msvaljek.blogspot.com/2013/05/canvas-circular-motions-and-networks.html
+
+			// standard shim
+			window.requestAnimFrame = (function(){
+				return window.requestAnimationFrame ||
+				window.webkitRequestAnimationFrame ||
+				window.mozRequestAnimationFrame ||
+				function( callback ) {
+					window.setTimeout(callback, 1000 / 60);
+				};
+			})();
+
+			// helper functions
+			function randomMax(max) {
+				return Math.floor(Math.random() * max);
+			}
+			function getParticleColor() {
+				var r = (100 + randomMax(155));
+				var g = (100 + randomMax(155));
+				var b = (100 + randomMax(155));
+
+				return 'rgb(' + r + ',' + g + ',' + b +  ')';
+			}
+			function refreshColor() {
+				for (var i = 0; i < particleSystem.particles.length; i++) {
+					particleSystem.particles[i].color = singlecolor ? defaultColor : getParticleColor();
+				}
+			}
+
+			// dom stuff and fps counter
+			var canvas = document.getElementById('mainCanvas');
+			var fpsOut = document.getElementById('fps');
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+			var ctx = canvas.getContext('2d');
+			var fps = 0, now, lastUpdate = (new Date())*1 - 1, fpsFilter = 50;
+
+			// globals
+			var numParticles = 180,
+				angleSpeed = 0.1,
+				particleSize = 1,
+				verticalSpeed = 2,
+				widthFactor = 5,
+				singlecolor = true,
+				defaultColor = '#73F0DF';
+
+			var Particle = function () {
+				this.h = Math.floor(canvas.height * Math.random());
+				this.angle = Math.random() * Math.PI * 2;
+				this.color = singlecolor ? defaultColor : getParticleColor();
+			};
+
+			Particle.prototype.draw = function (id) {
+				this.angle += angleSpeed;
+				this.h -= verticalSpeed;
+
+				if (this.h < 0 || this.h > canvas.height) {
+					this.h = Math.floor(canvas.height * Math.random());
+				}
+
+				ctx.beginPath();
+				ctx.fillStyle = singlecolor ? defaultColor : this.color;
+				var sizeFactor = 0.5 + (Math.sin(this.angle) + 1) / 2;
+				ctx.arc(canvas.width / 2 + Math.cos(this.angle) * (canvas.height - this.h) / widthFactor, this.h, particleSize * sizeFactor, 0, Math.PI * 2);
+				ctx.fill();
+			};
+
+			var ParticleSystem = function () {
+				this.particles = [];
+				for (var i = 0; i < numParticles; i++) {
+					this.particles.push(new Particle(canvas.height * Math.random()));
+				}
+			};
+			ParticleSystem.prototype.draw = function () {
+				for (var i = 0; i < this.particles.length; i++) {
+					this.particles[i].draw();
+				}
+			};
+
+			var gui = new dat.GUI();
+			gui.add(window, 'numParticles').min(1).max(1000).step(1).name('Num. Particles').onFinishChange(function() {
+				particleSystem = new ParticleSystem();
+			});
+			gui.add(window, 'angleSpeed').min(-0.9).max(0.9).step(0.005).name('Angle Speed');
+			gui.add(window, 'particleSize').min(1).max(10).step(1).name('Particle size');
+			gui.add(window, 'verticalSpeed').min(-20).max(20).step(0.5).name('VerticalSpeed');
+			gui.add(window, 'widthFactor').min(2).max(10).step(1).name('Width Factor');
+			gui.add(window, 'singlecolor').name('Single Color').onFinishChange(refreshColor);
+			gui.addColor(window, 'defaultColor').name('Default Color').onFinishChange(refreshColor);
+
+			var particleSystem = new ParticleSystem();
+
+			window.onresize = function() {
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+				particleSystem = new ParticleSystem();
+			};
+
+			(function animloop(){
+				requestAnimFrame(animloop);
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				particleSystem.draw();
+				var thisFrameFPS = 1000 / ((now=new Date()) - lastUpdate);
+				fps += (thisFrameFPS - fps) / fpsFilter;
+				lastUpdate = now;
+			})();
+
+			setInterval(function(){
+			  fpsOut.innerHTML = fps.toFixed(1) + " fps";
+			}, 1000);
+		</script> -->
+
+		<!-- Second Animation On Presentation -->
+		
+		<script>
+			var $emitter = $('#emitter'),
+			    emitEvery = 50, //emit new particle every X ms
+			    removeAfter = 1000; //remove particles after X ms
+
+			function create() {
+
+				if(animateFirstSlide) {
+
+					console.log('create');
+			  
+					//create particle and random values
+					var $particle = $('<div class="particle" />'),
+					x = Math.randMinMax(-200, 200),
+					y = Math.randMinMax(-200, 50),
+					z = Math.randMinMax(-200, 200),
+					degree = Math.randMinMax(0, 360),
+					color = 'hsla(' + Math.randMinMax(200, 320) + ', 80%, 60%, 1)';
+
+					//append particle to dom
+					$particle.css('background', color);            
+					$emitter.append( $particle );
+
+					//after a short timeout, set css to be transitioned to. Without the timeout, we would not see the transition
+					window.setTimeout(function() {
+					$particle.css({
+					webkitTransform: 'translateX(' + x + 'px) translateY(' + y + 'px) translateZ(' + z + 'px) rotateX(' + degree + 'deg)',
+					opacity: 0
+					}); 
+					}, 50);
+
+					//remove current particle after time
+					window.setTimeout(function() {
+					$particle.remove();
+					}, removeAfter);
+
+					//create next particle
+				}
+
+			  
+			  	window.setTimeout(create, emitEvery); 
+			  
+			  
+			}
+
+			//https://gist.github.com/timohausmann/4997906
+			Math.randMinMax=function(t,n,a){var r=t+Math.random()*(n-t)
+			return a&&(r=Math.round(r)),r}
+
+			//execute first particle creation
+			create();
 		</script>
 
 		<script>
